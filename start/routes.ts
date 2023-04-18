@@ -68,7 +68,7 @@ Route.get("/generate-images", async (ctx) => {
     );
   }
 
-  const files = fs.readdirSync("./tmp");
+  const files = fs.readdirSync(Application.tmpPath());
   const filteredFiles = files
     .filter((file) => file.startsWith("qr_"))
     .map((f) => path.join(Application.tmpPath(), f));
@@ -80,7 +80,6 @@ Route.get("/generate-images", async (ctx) => {
     },
     filteredFiles
   );
-  
 
-  ctx.response.download(path.join(Application.tmpPath(), "qr-images.tgz"))
+  ctx.response.download(path.join(Application.tmpPath(), "qr-images.tgz"));
 });
